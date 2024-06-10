@@ -5,6 +5,7 @@ import EmptyState from "./components/EmptyState";
 import getListings, { IListingParams } from "./actions/getListings";
 import ListingCard from "./components/ListingCard";
 import { getCurrentUser } from "./actions/getCurrentUser";
+import { SafeUser } from "./types";
 
 interface HomeProps{
   searchParams: IListingParams
@@ -12,7 +13,7 @@ interface HomeProps{
 
 const Home = async ({searchParams}: HomeProps) => {
   const listings = await getListings(searchParams);
-  const currentUser = await getCurrentUser();
+  const currentUser = await getCurrentUser() as SafeUser | null;
 
   if(listings.length === 0) {
     return(
