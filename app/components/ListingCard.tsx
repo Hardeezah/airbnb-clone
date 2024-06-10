@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 
 interface ListingCardProps {
     data: safeListing;
-    reservation: SafeReservation;
+    reservation?: SafeReservation;
     onAction?: (id: string) => void;
     disabled?: boolean;
     actionLabel?: string;
