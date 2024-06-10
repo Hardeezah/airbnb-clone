@@ -9,6 +9,7 @@ import LoginModal from "./components/modal/LoginModal";
 import { getCurrentUser } from "./actions/getCurrentUser";
 import RentModal from "./components/modal/RentModal";
 import SearchModal from "./components/modal/SearchModal";
+import { SafeUser } from "./types";
 
 
 const font = Nunito({ subsets: ["latin"] });
@@ -23,7 +24,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const currentUser = await getCurrentUser();
+  const currentUser = await getCurrentUser() as SafeUser | null;
 
   return (
     <html lang="en" suppressHydrationWarning>
