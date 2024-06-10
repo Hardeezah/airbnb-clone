@@ -2,11 +2,12 @@
 import { getCurrentUser } from '../actions/getCurrentUser';
 import getListings from '../actions/getListings';
 import EmptyState from '../components/EmptyState';
+import { SafeUser } from '../types';
 import PropertiesClient from './PropertiesClient';
 import TripsClient from './PropertiesClient';
 
 const PropertiesPage = async () => {
-    const currentUser = await getCurrentUser();
+    const currentUser = await getCurrentUser() as SafeUser | null;
 
     if(!currentUser) {
         return(

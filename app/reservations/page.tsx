@@ -1,10 +1,11 @@
 import { getCurrentUser } from "../actions/getCurrentUser";
 import getReservations from "../actions/getReservations";
 import EmptyState from "../components/EmptyState";
+import { SafeUser } from "../types";
 import ReservationsClient from "./ReservationsClient";
 
 const ReservationsPage = async () => {
-    const currentUser = await getCurrentUser();
+    const currentUser = await getCurrentUser() as SafeUser | null;
 
     if(!currentUser){
         return(

@@ -2,10 +2,11 @@
 import { getCurrentUser } from '../actions/getCurrentUser';
 import getReservations from '../actions/getReservations';
 import EmptyState from '../components/EmptyState';
+import { SafeUser } from '../types';
 import TripsClient from './TripsClient';
 
 const TripsPage = async () => {
-    const currentUser = await getCurrentUser();
+    const currentUser = await getCurrentUser() as SafeUser | null;
 
     if(!currentUser) {
         return(
