@@ -1,5 +1,4 @@
-
-import Image from "next/image";
+export const dynamic = 'force-dynamic'
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
 import getListings, { IListingParams } from "./actions/getListings";
