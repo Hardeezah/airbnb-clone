@@ -10,6 +10,7 @@ import { getCurrentUser } from "./actions/getCurrentUser";
 import RentModal from "./components/modal/RentModal";
 import SearchModal from "./components/modal/SearchModal";
 import { SafeUser } from "./types";
+import ClientOnly from "./components/ClientOnly";
 
 
 const font = Nunito({ subsets: ["latin"] });
@@ -30,13 +31,15 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       
       <body className={font.className}>
-        <ToasterProvider/>
-        <SearchModal/>
-        <RentModal/>
-        <LoginModal/>
-        <RegisterModal/>
-        <Navbar currentUser = {currentUser}/>
-        <div className="pb-20 pt-28"></div>
+        <ClientOnly>
+          <ToasterProvider/>
+          <SearchModal/>
+          <RentModal/>
+          <LoginModal/>
+          <RegisterModal/>
+          <Navbar currentUser = {currentUser}/>
+          <div className="pb-20 pt-28"></div>
+        </ClientOnly>
         {children}
       </body>
     </html>
