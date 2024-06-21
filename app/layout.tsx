@@ -25,7 +25,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const currentUser = await getCurrentUser() as SafeUser | null;
+  const currentUser = await getCurrentUser() as SafeUser ;
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -39,8 +39,8 @@ export default async function RootLayout({
           <RegisterModal/>
           <Navbar currentUser = {currentUser}/>
           <div className="pb-20 pt-28"></div>
+                  {children}
         </ClientOnly>
-        {children}
       </body>
     </html>
 
