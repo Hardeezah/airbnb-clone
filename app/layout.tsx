@@ -13,7 +13,7 @@ import { SafeUser } from "./types";
 import ClientOnly from "./components/ClientOnly";
 
 
-const font = Nunito({ subsets: ["latin"] });
+const font = Nunito({ subsets: ["latin"] }) ;
 
 export const metadata: Metadata = {
   title: "Create Next App",
