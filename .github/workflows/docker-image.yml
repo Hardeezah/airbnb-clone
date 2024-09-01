@@ -23,7 +23,7 @@ jobs:
       - name: Build the Docker image
         run: |
           docker build . -f Dockerfile -t demo-image-test:latest
-          docker tag demo-image-test:latest $DOCKER_USER/airbnb-clone:latest
+          docker tag airbnb-clone:latest $DOCKER_USER/airbnb-clone:latest
 
       - name: List Docker images
         run: docker images
