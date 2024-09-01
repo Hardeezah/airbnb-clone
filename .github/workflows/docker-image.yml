@@ -1,27 +1,32 @@
-
 name: Build Docker Image
+
 on:
   push:
     branches:
       - main
+
 jobs:
-    build:
-      name: push docker image to docker hub
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - name: login to docker hub
-          id: docker-hub
-          env:
-            username: ${{secrets.DOCKER_USER}}
-            password: ${{secrets.DOCKERHUB_TOKEN}}
-          run: |
-            docker login -u $username -p $password 
-        - name: build the docker image
-          id: build-docker-image
-          run: |
-            ls -la 
-            docker build . -f Dockerfile -t dhruvin30/demo-image-test:latest
-        - name: push the docker image
-          id: push-docker-image
-          run: docker push ${{secrets.DOCKER_USER}}/demo-image-test:latest
+  build:
+    name: Push Docker Image to Docker Hub
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Log in to Docker Hub
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        run: |
+          echo $DOCKERHUB_TOKEN | docker login -u $DOCKER_USER --password-stdin
+
+      - name: Build the Docker image
+        run: |
+          docker build . -f Dockerfile -t demo-image-test:latest
+          docker tag demo-image-test:latest $DOCKER_USER/airbnb-clone:latest
+
+      - name: List Docker images
+        run: docker images
+
+      - name: Push the Docker image
+        run: docker push $DOCKER_USER/airbnb-clone:latest
